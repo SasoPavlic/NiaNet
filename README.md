@@ -28,11 +28,11 @@ This code's paper is currently in the writing stage... (TODO)
 
 ##### Configurating parameters
 
-Configure `evolve-autoencoder.cfg` according to your needs. (TODO)
+Configure `evolve.cfg` according to your needs. (TODO)
 
-##### Running ANAD script
+##### Running NiaNet script
 
-`python evolve-autoencoder.py` (TODO)
+`python evolve.py`
 
 ### HELP ⚠️
 
