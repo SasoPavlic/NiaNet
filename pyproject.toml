@@ -3,6 +3,7 @@ name = "NiaNet"
 version = "1.0.0"
 description = "Designing and constructing neural network topologies using nature-inspired algorithms"
 authors = ["Sašo Pavlič <saso.pavlic@student.um.si>"]
+readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.9"
