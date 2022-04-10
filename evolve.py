@@ -14,7 +14,7 @@ from sklearn.preprocessing import StandardScaler
 from torch.optim.lr_scheduler import ExponentialLR
 from sklearn.metrics import mean_squared_error
 from datetime import datetime
-from autoencoder import Autoencoder
+from nianet.autoencoder import Autoencoder
 
 """DEVICE USED IN TRAINING"""
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
