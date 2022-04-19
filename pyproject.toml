@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "NiaNet"
+version = "1.0.0"
+description = "Designing and constructing neural network topologies using nature-inspired algorithms"
+authors = ["Sašo Pavlič <saso.pavlic@student.um.si>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+torch = "^1.11.0"
+scikit-learn = "^1.0.2"
+numpy = "^1.22.3"
+niapy = "^2.0.1"
+matplotlib = "^3.5.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
