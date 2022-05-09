@@ -11,9 +11,9 @@ class Autoencoder(nn.Module):
     def __init__(self, genome, dataset_shape):
         super(Autoencoder, self).__init__()
 
-        self.decoding_layers = nn.ModuleList()
         self.encoding_layers = nn.ModuleList()
-
+        self.decoding_layers = nn.ModuleList()
+        self.bottleneck_size = 0
         self.shape = self.get_shape(genome[0])
         self.layer_step = self.get_layer_step(genome[1], dataset_shape)
         self.layers = self.get_layers(genome[2], self.layer_step, dataset_shape)
@@ -36,6 +36,7 @@ class Autoencoder(nn.Module):
             f"Layers:{self.layers}\n"
             f"Encoder:{self.encoding_layers}\n"
             f"Decoder:{self.decoding_layers}\n"
+            f"Bottleneck size:{self.bottleneck_size}\n"
             f"Optimizer: {self.optimizer}")
 
     def forward(self, x):
@@ -43,11 +44,9 @@ class Autoencoder(nn.Module):
         x = x.reshape(x.shape[1], x.shape[0])
 
         for layer in self.encoding_layers:
-            # x = F.relu(layer(x))
             x = self.activation(layer(x))
 
         for layer in self.decoding_layers:
-            # x = F.relu(layer(x))
             x = self.activation(layer(x))
 
         """Flipping back to original shape"""
@@ -145,7 +144,7 @@ class Autoencoder(nn.Module):
         bins = np.array([0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.60, 0.7, 0.8, 0.9, 1.01])
         inds = np.digitize(gene, bins)
 
-        return inds[0] * 10
+        return inds[0] * 10 + 100
 
     def get_learning_rate(self, gene):
         gene = np.array([gene])
@@ -173,6 +172,7 @@ class Autoencoder(nn.Module):
                 if z < 1:
                     self.encoding_layers.append(nn.Linear(in_features=i, out_features=z + 1))
                     self.decoding_layers.insert(0, nn.Linear(in_features=z + 1, out_features=i))
+                    self.bottleneck_size = z + 1
                     break
 
                 self.encoding_layers.append(nn.Linear(in_features=i, out_features=z))
@@ -180,6 +180,11 @@ class Autoencoder(nn.Module):
                 i = i - layer_step
                 z = z - layer_step
                 layers = layers - 1
+
+            if len(self.encoding_layers) == 0:
+                self.bottleneck_size = 0
+            else:
+                self.bottleneck_size = self.encoding_layers[-1].out_features
 
         elif shape == "A-SYMMETRICAL":
             i = dataset_shape[1]
@@ -207,6 +212,7 @@ class Autoencoder(nn.Module):
 
                     if z < 1:
                         self.encoding_layers.append(nn.Linear(in_features=i, out_features=z + 1))
+                        self.bottleneck_size = z + 1
                         break
 
                     self.encoding_layers.append(nn.Linear(in_features=i, out_features=z))
@@ -229,7 +235,10 @@ class Autoencoder(nn.Module):
 
                     self.decoding_layers.append(nn.Linear(in_features=last_i, out_features=i))
 
-            print("")
+            if len(self.encoding_layers) == 0:
+                self.bottleneck_size = 0
+            else:
+                self.bottleneck_size = self.encoding_layers[-1].out_features
 
     def get_optimizer(self, gene):
         gene = np.array([gene])

@@ -1,13 +1,16 @@
 import copy
 import math
 import sys
+
+import pandas as pd
 import torch
 import numpy as np
+from niapy import Runner
 
-from niapy.task import Task, OptimizationType
 from niapy.problems import Problem
-from niapy.algorithms.basic import GreyWolfOptimizer
-from sklearn.datasets import load_breast_cancer
+from niapy.algorithms.basic import *
+from niapy.algorithms.modified import *
+from sklearn.datasets import load_diabetes
 from sklearn.model_selection import train_test_split
 from torch import nn
 from sklearn.preprocessing import StandardScaler
@@ -21,6 +24,14 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 """Custom made functions (scheduler_to, optimizer to). With the purpose to put tensors on a selected device"""
 """Pytorch --> Feature request --> Open: https://github.com/pytorch/pytorch/issues/8741"""
+
+
+def load_dataset():
+    df = pd.read_csv('./datasets/dataset_small.csv')
+    data = load_diabetes()
+    df = pd.DataFrame(data=data.data, columns=data.feature_names)
+    df['target'] = pd.Series(data.target)
+    return df
 
 
 def scheduler_to(sched, device):
@@ -111,7 +122,7 @@ def predict(model, dataset):
     return predictions, losses, original
 
 
-class WorldProblem(Problem):
+class AutoencoderArchitecture(Problem):
 
     def __init__(self, dimension, X_train, y_train, alpha=0.99):
         super().__init__(dimension=dimension, lower=0, upper=1)
@@ -158,7 +169,7 @@ class WorldProblem(Problem):
         else:
             predictions, losses, original = predict(model, X_test_sequence)
             MSE = mean_squared_error(original, predictions)
-            fitness = (MSE * 1000) + (model.epochs ** 2) + (model.layers ** 3)
+            fitness = (MSE * 1000) + (model.epochs ** 2) + (model.layers ** 3) + (model.bottleneck_size * 100)
             print(f"Fitness: {fitness}")
 
             return fitness
@@ -168,20 +179,43 @@ if __name__ == '__main__':
     start = datetime.now().strftime("%H:%M:%S-%d/%m/%Y")
     print(f"Program start... {start}")
 
-    DIMENSIONALITY = 7
-    dataset = load_breast_cancer()
-    data = dataset.data
-    target = dataset.target
-    feature_names = dataset.feature_names
+    dataset = load_dataset()
+    target = dataset.loc[:, dataset.columns == 'target']
+    data = dataset.loc[:, dataset.columns != 'target']
+    DIMENSIONALITY = data.shape[1]
 
     data = StandardScaler().fit_transform(data)
-
     X_train, X_test, y_train, y_test = train_test_split(data, target, test_size=0.33, random_state=1234)
 
-    problem = WorldProblem(DIMENSIONALITY, X_train, y_train)
-    task = Task(problem, max_iters=100, optimization_type=OptimizationType.MINIMIZATION)
-    algorithm = GreyWolfOptimizer(population_size=10, seed=1234)
-    best_genome, best_fitness = algorithm.run(task)
+    problem = AutoencoderArchitecture(DIMENSIONALITY, X_train, y_train)
+
+    runner = Runner(
+        dimension=DIMENSIONALITY,
+        max_evals=100,
+        runs=2,
+        algorithms=[
+            ParticleSwarmAlgorithm(),
+            DifferentialEvolution(),
+            FireflyAlgorithm(),
+            SelfAdaptiveDifferentialEvolution(),
+            GeneticAlgorithm()
+        ],
+        problems=[
+            AutoencoderArchitecture(DIMENSIONALITY, X_train, y_train)
+        ]
+    )
+
+    solutions = runner.run(export='json', verbose=True)
+    best_fitness = sys.maxsize
+    best_genome = None
+
+    for alg in solutions:
+        solution = solutions[alg]['AutoencoderArchitecture'][0][1]
+        print(f"Solution's fitness: {solution}")
+
+        if best_fitness > solution:
+            best_fitness = solution
+            best_genome = solutions[alg]['AutoencoderArchitecture'][0][0]
 
     model = Autoencoder(best_genome, X_train.shape)
 
