@@ -22,17 +22,17 @@ This code's paper is currently in the writing stage... (TODO)
 
 ### Usage 🔨
 
-##### Changing directory
-
-`cd NiaNet`
-
 ##### Configurating parameters
 
-Configure `evolve.cfg` according to your needs. (TODO)
+Configure `nianet/autoencoder.py` according to your needs. You can change activations functions and optimizers
+
+##### Changing directory
+
+`cd examples`
 
 ##### Running NiaNet script
 
-`python evolve.py`
+`python evolve_for_diabetes_dataset.py`
 
 ### HELP ⚠️
 

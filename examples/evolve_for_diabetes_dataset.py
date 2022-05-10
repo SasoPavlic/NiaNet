@@ -27,7 +27,6 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 def load_dataset():
-    df = pd.read_csv('./datasets/dataset_small.csv')
     data = load_diabetes()
     df = pd.DataFrame(data=data.data, columns=data.feature_names)
     df['target'] = pd.Series(data.target)
