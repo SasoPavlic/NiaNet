@@ -34,6 +34,7 @@ class Autoencoder(nn.Module):
             f"Shape:{self.shape}\n"
             f"Layer step:{self.layer_step}\n"
             f"Layers:{self.layers}\n"
+            f"Activation function:{self.activation}\n"
             f"Encoder:{self.encoding_layers}\n"
             f"Decoder:{self.decoding_layers}\n"
             f"Bottleneck size:{self.bottleneck_size}\n"
