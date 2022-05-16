@@ -1,4 +1,6 @@
-# NiaNet 🐺
+<p align="center"><img src=".github/NiaNetLogo.png" alt="NiaPy" title="NiaNet"/></p>
+
+---
 
 ### Designing and constructing neural network topologies using nature-inspired algorithms
 
