@@ -1,7 +1,10 @@
 <p align="center"><img src=".github/NiaNetLogo.png" alt="NiaPy" title="NiaNet"/></p>
 
 ---
-
+[![PyPI Version](https://img.shields.io/badge/pypi-v1.0.0-blue)](https://pypi.org/project/nianet/)
+![PyPI - Python Version](https://img.shields.io/badge/python-3.8-blue)
+[![Downloads](https://static.pepy.tech/badge/nianet)](https://pepy.tech/project/nianet)
+[![GitHub license](https://img.shields.io/badge/license-MIT-green)](https://github.com/SasoPavlic/NiaNet/blob/main/LICENSE)
 ### Designing and constructing neural network topologies using nature-inspired algorithms
 
 ### Description 📝
@@ -30,21 +33,21 @@ Usage examples can be found [here](examples).
 
 ### Getting started 🔨
 
-##### Create your own example
+##### Create your own example:
 In [examples](examples) folder create the Python file based on the existing [evolve_for_diabetes_dataset.py](examples/evolve_for_diabetes_dataset.py).
 
-##### Change dataset
+##### Change dataset:
 Change the dataset import function as follows:
 ```python
 from sklearn.datasets import load_diabetes
-data = load_diabetes()
+dataset = load_diabetes()
 ```
 
-##### Specifying the Search space
+##### Specify the search space:
 
 Set the boundaries of your search space with [autoencoder.py](nianet/autoencoder.py).
 
-The following dimensions can be changed:
+The following dimensions can be modified:
 * Topology shape (symmetrical, asymmetrical)
 * Size of input, hidden and output layers
 * Number of hidden layers
@@ -55,7 +58,7 @@ The following dimensions can be changed:
 * Optimizer
 
 You can run the NiaNet script once your setup is complete.
-##### Running NiaNet script
+##### Running NiaNet script:
 
 `python evolve_for_diabetes_dataset.py`
 
