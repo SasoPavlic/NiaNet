@@ -8,18 +8,18 @@ from torch import nn
 
 class Autoencoder(nn.Module):
 
-    def __init__(self, genome, dataset_shape):
+    def __init__(self, solution, dataset_shape):
         super(Autoencoder, self).__init__()
 
         self.encoding_layers = nn.ModuleList()
         self.decoding_layers = nn.ModuleList()
         self.bottleneck_size = 0
-        self.shape = self.get_shape(genome[0])
-        self.layer_step = self.get_layer_step(genome[1], dataset_shape)
-        self.layers = self.get_layers(genome[2], self.layer_step, dataset_shape)
-        self.activation = self.get_activation(genome[3])
-        self.epochs = self.get_epochs(genome[4])
-        self.learning_rate = self.get_learning_rate(genome[5])
+        self.shape = self.get_shape(solution[0])
+        self.layer_step = self.get_layer_step(solution[1], dataset_shape)
+        self.layers = self.get_layers(solution[2], self.layer_step, dataset_shape)
+        self.activation = self.get_activation(solution[3])
+        self.epochs = self.get_epochs(solution[4])
+        self.learning_rate = self.get_learning_rate(solution[5])
 
         self.generate_autoencoder(self.shape,
                                   self.layers,
@@ -27,7 +27,7 @@ class Autoencoder(nn.Module):
                                   dataset_shape,
                                   self.layer_step)
 
-        self.optimizer = self.get_optimizer(genome[6])
+        self.optimizer = self.get_optimizer(solution[6])
 
         print(
             f"Epochs:{self.epochs}\n"

@@ -13,25 +13,48 @@ The proposed method NiaNet attempts to pick hyperparameters and AE architecture 
 * **Construct novel AE's architecture** using nature-inspired algorithms.
 * It can be utilized for **any kind of dataset**, which has **numerical** values.
 
-### Requirements ✅
+### Installation ✅
 
-* **Anaconda** enviroment with Python 3.8.x (to run NiaNet script).
-* **Setup of project** `pip install .`
+Installing NiaNet with pip3: 
+```sh
+pip3 install nianet
+```
 
 ### Documentation 📘
 
-This code's paper is currently in the writing stage... (TODO)
+The paper referring to this source code is currently being published. The link will be posted here once it is available.
 
-### Usage 🔨
+### Examples
 
-##### Configurating parameters
+Usage examples can be found [here](examples).
 
-Configure `nianet/autoencoder.py` according to your needs. You can change activations functions and optimizers
+### Getting started 🔨
 
-##### Changing directory
+##### Create your own example
+In [examples](examples) folder create the Python file based on the existing [evolve_for_diabetes_dataset.py](examples/evolve_for_diabetes_dataset.py).
 
-`cd examples`
+##### Change dataset
+Change the dataset import function as follows:
+```python
+from sklearn.datasets import load_diabetes
+data = load_diabetes()
+```
 
+##### Specifying the Search space
+
+Set the boundaries of your search space with [autoencoder.py](nianet/autoencoder.py).
+
+The following dimensions can be changed:
+* Topology shape (symmetrical, asymmetrical)
+* Size of input, hidden and output layers
+* Number of hidden layers
+* Number of neurons in hidden layers
+* Activation functions
+* Number of epochs
+* Learning rate
+* Optimizer
+
+You can run the NiaNet script once your setup is complete.
 ##### Running NiaNet script
 
 `python evolve_for_diabetes_dataset.py`
