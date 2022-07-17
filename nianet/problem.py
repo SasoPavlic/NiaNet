@@ -74,7 +74,17 @@ class AutoencoderArchitecture(Problem):
 def find_architecture(df_dataset):
     target = df_dataset.loc[:, df_dataset.columns == 'target']
     data = df_dataset.loc[:, df_dataset.columns != 'target']
-    DIMENSIONALITY = data.shape[1]
+    """
+    Dimensionality:
+    y1: topology shape,
+    y2: number of neurons per layer
+    y3: number of layers,
+    y4: activation function
+    y5: number of epochs,
+    y6: learning rate
+    y7: optimizer algorithm.
+    """
+    DIMENSIONALITY = 7
     data = StandardScaler().fit_transform(data)
     X_train, X_test, y_train, y_test = train_test_split(data, target, test_size=0.33, random_state=1234)
 
@@ -101,7 +111,9 @@ def find_architecture(df_dataset):
 
     for algorithm in final_solutions:
         fitness = final_solutions[algorithm]['AutoencoderArchitecture'][0][1]
+        solution = final_solutions[algorithm]['AutoencoderArchitecture'][0][0]
         print(f"{algorithm}'s fitness: {fitness}")
+        print(f"{algorithm}'s solution: {solution}")
 
         if best_fitness > fitness:
             best_fitness = fitness

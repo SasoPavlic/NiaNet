@@ -30,15 +30,16 @@ class Autoencoder(nn.Module):
         self.optimizer = self.get_optimizer(solution[6])
 
         print(
-            f"Epochs:{self.epochs}\n"
-            f"Shape:{self.shape}\n"
-            f"Layer step:{self.layer_step}\n"
-            f"Layers:{self.layers}\n"
-            f"Activation function:{self.activation}\n"
-            f"Encoder:{self.encoding_layers}\n"
-            f"Decoder:{self.decoding_layers}\n"
-            f"Bottleneck size:{self.bottleneck_size}\n"
-            f"Optimizer: {self.optimizer}")
+            f"y1: Shape: {self.shape}\n"
+            f"y2: Layer step: {self.layer_step}\n"
+            f"y3: Layers: {self.layers}\n"
+            f"y4: Activation function: {self.activation}\n"
+            f"y5: Epochs: {self.epochs}\n"
+            f"y6: Learning rate: {self.learning_rate}\n"
+            f"y7: Optimizer: {self.optimizer}\n"
+            f"Bottleneck size: {self.bottleneck_size}\n"
+            f"Encoder: {self.encoding_layers}\n"
+            f"Decoder: {self.decoding_layers}\n")
 
     def forward(self, x):
         """Flipping shape of tensors"""
@@ -82,7 +83,6 @@ class Autoencoder(nn.Module):
         return inds[0]
 
     def get_layers(self, gene, layer_step, dataset_shape):
-
         if layer_step == 0:
             max_layers = dataset_shape[1]
             return max_layers
@@ -162,7 +162,6 @@ class Autoencoder(nn.Module):
         return lr
 
     def generate_autoencoder(self, shape, layers, dataset_shape, layer_step):
-
         if shape == "SYMMETRICAL":
 
             i = dataset_shape[1]
