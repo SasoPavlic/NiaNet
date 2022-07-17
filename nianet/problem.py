@@ -61,8 +61,11 @@ class AutoencoderArchitecture(Problem):
 
         else:
             predictions, losses, original = helper.predict(model, X_test_sequence)
-            MSE = mean_squared_error(original, predictions)
-            fitness = (MSE * 1000) + (model.epochs ** 2) + (model.layers ** 3) + (model.bottleneck_size * 100)
+            RMSE = mean_squared_error(original, predictions, squared=False)
+            complexity = (model.epochs ** 2) + (model.layers * 100) + (model.bottleneck_size * 10)
+            fitness = (RMSE * 1000) + (complexity / 100)
+            print(f"RMSE: {RMSE}")
+            print(f"Complexity: {complexity}")
             print(f"Fitness: {fitness}")
 
             return fitness
