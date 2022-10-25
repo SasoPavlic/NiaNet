@@ -25,8 +25,8 @@ pip3 install nianet
 
 ### Documentation 📘
 
-**Conference paper: Annals of Computer Science and Information Systems, Volume 30**
-    * [NiaNet: A framework for constructing Autoencoder architectures using nature-inspired algorithms]([https://www.sasopavlic.com/publication/nianet-a-framework-for-constructing-autoencoder-architectures-using-nat-ure-inspired-algorithms])
+**Annals of Computer Science and Information Systems, Volume 30:**
+[NiaNet: A framework for constructing Autoencoder architectures using nature-inspired algorithms](https://www.sasopavlic.com/publication/nianet-a-framework-for-constructing-autoencoder-architectures-using-nat-ure-inspired-algorithms/)
 
 ### Examples
 
