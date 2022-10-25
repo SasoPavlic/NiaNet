@@ -25,7 +25,8 @@ pip3 install nianet
 
 ### Documentation 📘
 
-The paper referring to this source code is currently being published. The link will be posted here once it is available.
+**Conference paper: Annals of Computer Science and Information Systems, Volume 30**
+    * [NiaNet: A framework for constructing Autoencoder architectures using nature-inspired algorithms]([https://www.sasopavlic.com/publication/nianet-a-framework-for-constructing-autoencoder-architectures-using-nat-ure-inspired-algorithms])
 
 ### Examples
 
@@ -74,6 +75,53 @@ You can run the NiaNet script once your setup is complete.
 
 * This code is a fork of [NiaPy](https://github.com/NiaOrg/NiaPy). I am grateful that the authors chose to
   open-source their work for future use.
+
+# Cite us
+Are you using NiaNet in your project or research? Please cite us!
+### Plain format
+```
+S. Pavlič, I. F. Jr, and S. Karakatič, “NiaNet: A framework for constructing Autoencoder architectures using nature-inspired algorithms,” in Annals of Computer Science and Information Systems, 2022, vol. 30, pp. 109–116. Accessed: Oct. 08, 2022. [Online]. Available: https://annals-csis.org/Volume_30/drp/192.html
+```
+### Bibtex format
+```
+    @article{NiaPyJOSS2018,
+        author  = {Vrban{\v{c}}i{\v{c}}, Grega and Brezo{\v{c}}nik, Lucija
+                  and Mlakar, Uro{\v{s}} and Fister, Du{\v{s}}an and {Fister Jr.}, Iztok},
+        title   = {{NiaPy: Python microframework for building nature-inspired algorithms}},
+        journal = {{Journal of Open Source Software}},
+        year    = {2018},
+        volume  = {3},
+        issue   = {23},
+        issn    = {2475-9066},
+        doi     = {10.21105/joss.00613},
+        url     = {https://doi.org/10.21105/joss.00613}
+    }
+```
+### RIS format
+```
+TY  - CONF
+TI  - NiaNet: A framework for constructing Autoencoder architectures using nature-inspired algorithms
+AU  - Pavlič, Sašo
+AU  - Jr, Iztok Fister
+AU  - Karakatič, Sašo
+T2  - Proceedings of the 17th Conference on Computer Science and Intelligence Systems
+C3  - Annals of Computer Science and Information Systems
+DA  - 2022///
+PY  - 2022
+DP  - annals-csis.org
+VL  - 30
+SP  - 109
+EP  - 116
+LA  - en
+SN  - 978-83-962423-9-6
+ST  - NiaNet
+UR  - https://annals-csis.org/Volume_30/drp/192.html
+Y2  - 2022/10/08/19:08:20
+L1  - https://annals-csis.org/Volume_30/drp/pdf/192.pdf
+L2  - https://annals-csis.org/Volume_30/drp/192.html
+```
+
+
 
 ## License
 
