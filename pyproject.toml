@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "NiaNet"
-version = "1.1.1"
+version = "1.1.2"
 description = "Designing and constructing neural network topologies using nature-inspired algorithms"
 authors = ["Sašo Pavlič <saso.pavlic@student.um.si>"]
 keywords = ['adaptation', 'deep learning', 'nature-inspired algorithms', 'neural networks', 'torch']
