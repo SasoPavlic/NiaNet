@@ -1,0 +1,21 @@
+# YAML 1.2
+---
+authors: 
+  -
+    family-names: "Pavlič"
+    given-names: Sašo
+  -
+    family-names: "Sašo"
+    given-names: Karakatič
+  -
+    family-names: "Fister Jr."
+    given-names: Iztok
+cff-version: "1.1.0"
+date-released: 2022-09-30
+doi: "http://dx.doi.org/10.15439/2022F192"
+license: MIT
+message: "If you use this software, please cite it using these metadata."
+repository-code: "https://github.com/SasoPavlic/NiaNet"
+title: "Designing and constructing neural network topologies using nature-inspired algorithms"
+version: "1.1.2"
+...

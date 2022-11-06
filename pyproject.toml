@@ -17,7 +17,7 @@ niapy = "^2.0.1"
 matplotlib = "^3.5.1"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
+pytest = "^7.2.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
