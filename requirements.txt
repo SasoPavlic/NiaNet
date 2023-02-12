@@ -2,4 +2,6 @@ torch
 scikit-learn
 numpy
 niapy
-matplotlib
+tomli
+nianet
+pandas
